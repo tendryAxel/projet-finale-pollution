@@ -3,7 +3,7 @@
     ```sh
     pip install -r requirement.txt
     ```
-- Add env variable or create .env file (wip :D):
+- Add env variable or create .env file:
     ```env
     DB_USERNAME=postgres
     DB_PASSWORD=postgres-password

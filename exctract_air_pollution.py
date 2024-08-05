@@ -1,6 +1,7 @@
 import sqlalchemy
 import datetime
 import os
+import dotenv
 
 from utils import find_city_position, get_pollution
 
@@ -26,4 +27,5 @@ def main(): save_hourly_weather_to_csv("Paris")
 
 
 if __name__ == '__main__':
+    dotenv.load_dotenv()
     main()
