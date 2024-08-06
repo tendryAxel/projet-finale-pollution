@@ -14,3 +14,8 @@
 # NB
 - the migration is automatic, just create the database
 - the actual code get the Paris' pollution
+
+# To use with airflow
+- create folder **/weather** in **/dags**
+- create **__init__.py** in **/dags/weather** folder
+- copy **exctract_air_pollution.py** and **utils.py** to **/dags/weather**
