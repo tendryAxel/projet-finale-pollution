@@ -7,6 +7,7 @@
     ```env
     DB_USERNAME=postgres
     DB_PASSWORD=postgres-password
+    DB_HOST=localhost
     DB_NAME=postgres-database
     OPEN_WEATHER_API_KEY=your-api-key 
     ```
