@@ -24,3 +24,23 @@ def get_pollution(location: geopy.Location, date: datetime.datetime) -> pd.DataF
         location.longitude,
         os.getenv("OPEN_WEATHER_API_KEY")
     )
+
+
+class Database:
+    DB_PASSWRD_ENV_NAME = "DB_PASSWORD"
+
+    def __init__(self):
+        self.username = os.getenv("DB_USERNAME")
+        self.database_name = os.getenv("DB_NAME")
+        self.password = os.getenv(self.DB_PASSWRD_ENV_NAME)
+        self.host = os.getenv("DB_HOST")
+
+        self.username = self.username if self.username else "postgres"
+        self.database_name = self.database_name if self.database_name else "pollution"
+        self.host = self.host if self.host else "localhost"
+
+        if self.password is None:
+            raise RuntimeError(f"Database password is not provided \n\tSet {self.DB_PASSWRD_ENV_NAME} env")
+
+    def create_url(self) -> str:
+        return f'postgresql+psycopg2://{self.username}:{self.password}@{self.host}/{self.username}'

@@ -1,12 +1,11 @@
 import pandas as pd
 import sqlalchemy
 import datetime
-import os
 import dotenv
 
-from utils import find_city_position, get_pollution
+from utils import find_city_position, get_pollution, Database
 
-psql_url = f'postgresql+psycopg2://{os.getenv("DB_USERNAME")}:{os.getenv("DB_PASSWORD")}@localhost/{os.getenv("DB_NAME")}'
+psql_url = Database().create_url()
 engine = sqlalchemy.create_engine(psql_url)
 
 
