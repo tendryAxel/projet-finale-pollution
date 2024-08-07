@@ -1,7 +1,6 @@
 import pandas as pd
 import sqlalchemy
 import datetime
-import dotenv
 
 from utils import find_city_position, get_pollution, Database
 
@@ -26,8 +25,3 @@ def save_hourly_weather_of_many_to_csv(cities: list[str], date: datetime.datetim
 
 
 def main(): save_hourly_weather_of_many_to_csv(["Paris", "London"])
-
-
-if __name__ == '__main__':
-    dotenv.load_dotenv()
-    main()
