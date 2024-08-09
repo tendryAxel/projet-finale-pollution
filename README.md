@@ -1,4 +1,5 @@
 # To set up
+- Use Python 3.11
 - Create venv
   - for Windows
     ```shell
@@ -20,13 +21,17 @@
       pip3 install -r requirement.txt
       ```
 - Add env variable or create .env file:
-    ```env
-    DB_USERNAME=postgres
-    DB_PASSWORD=postgres-password
-    DB_HOST=localhost
-    DB_NAME=postgres-database
-    OPEN_WEATHER_API_KEY=your-api-key 
-    ```
+  - required
+      ```env
+      DB_PASSWORD=postgres-password
+      OPEN_WEATHER_API_KEY=your-api-key 
+      ```
+  - optional
+      ```env
+      DB_USERNAME=postgres
+      DB_HOST=localhost
+      DB_NAME=postgres-database
+      ```
 - Run the code:
   - for Windows
       ```sh
@@ -44,4 +49,4 @@
 # To use with airflow
 - create folder **/weather** in **/dags**
 - create **__init__.py** in **/dags/weather** folder
-- copy **exctract_air_pollution.py** and **utils.py** to **/dags/weather**
+- copy **exctract_air_pollution.py**, **transform_calc_aqi.py** and **utils.py** to **/dags/weather**

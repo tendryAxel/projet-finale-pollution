@@ -10,7 +10,8 @@ def save_hourly_weather_to_csv(engine: Engine, city: str, date: datetime.datetim
     location = find_city_position(city)
     pollution = get_pollution(location, date)
     pollution["city_name"] = city
-    return pollution.to_sql('weather', con=engine, if_exists='append', index=False)
+    pollution["aqi"] = 0
+    return pollution.to_sql('weather_lake', con=engine, if_exists='append', index=False)
 
 
 def save_hourly_weather_of_many_to_csv(engine: Engine, cities: list[str], date: datetime.datetime = datetime.datetime.today()) -> None:
@@ -19,7 +20,7 @@ def save_hourly_weather_of_many_to_csv(engine: Engine, cities: list[str], date: 
     })
     for city in cities:
         save_hourly_weather_to_csv(engine, city, date)
-    city_dataframe.to_sql("city", con=engine, if_exists='replace', index=False)
+    city_dataframe.to_sql("city_lake", con=engine, if_exists='replace', index=False)
 
 
 def main(engine: Engine): save_hourly_weather_of_many_to_csv(engine, ["Paris", "London"])
