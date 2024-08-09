@@ -43,4 +43,4 @@ class Database:
             raise RuntimeError(f"Database password is not provided \n\tSet {self.DB_PASSWRD_ENV_NAME} env")
 
     def create_url(self) -> str:
-        return f'postgresql+psycopg2://{self.username}:{self.password}@{self.host}/{self.username}'
+        return f'postgresql+psycopg2://{self.username}:{self.password}@{self.host}/{self.database_name}'
