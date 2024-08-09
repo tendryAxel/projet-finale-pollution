@@ -49,4 +49,4 @@
 # To use with airflow
 - create folder **/weather** in **/dags**
 - create **__init__.py** in **/dags/weather** folder
-- copy **exctract_air_pollution.py**, **transform_calc_aqi.py** and **utils.py** to **/dags/weather**
+- copy **exctract_air_pollution.py**, **transform.py** and **utils.py** to **/dags/weather**

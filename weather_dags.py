@@ -3,7 +3,7 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.utils.dates import days_ago
 
 # Importing the task functions
-from weather import exctract_air_pollution, transform_calc_aqi
+from weather import exctract_air_pollution, transform
 
 default_args = {
     'owner': 'airflow',
@@ -30,7 +30,7 @@ extract_weather = PythonOperator(
 )
 calculate_aqi = PythonOperator(
     task_id='calculate_aqi',
-    python_callable=transform_calc_aqi.main,
+    python_callable=transform.main,
     dag=dag,
 )
 

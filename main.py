@@ -2,7 +2,7 @@ import dotenv
 import sqlalchemy
 
 import exctract_air_pollution
-import transform_calc_aqi
+import transform
 from utils import Database
 
 if __name__ == '__main__':
@@ -17,6 +17,8 @@ if __name__ == '__main__':
     # pollution_lake and city_lake as DataLake to store the fetched data
     exctract_air_pollution.main(engine)
 
-    # Calculate the AQI of the stored data
-    # pollution store the AQI based on the POLLUTANT_PM10
-    transform_calc_aqi.main(engine)
+    """
+        - Calculate the AQI and store in pollution
+        - Store geographic and demographic data in the database
+    """
+    transform.main(engine)
