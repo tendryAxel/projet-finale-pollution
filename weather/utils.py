@@ -18,7 +18,7 @@ def find_city_position(city: str) -> geopy.Location: return geolocator.geocode(c
 
 def get_pollution(location: geopy.Location, date: datetime.datetime) -> pd.DataFrame:
     return get_pollution_history(
-        convert_datetime_to_unix_timestamp(date - datetime.timedelta(days=1)),
+        convert_datetime_to_unix_timestamp(date - datetime.timedelta(days=4)),
         convert_datetime_to_unix_timestamp(date),
         location.latitude,
         location.longitude,

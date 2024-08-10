@@ -1,9 +1,8 @@
 import dotenv
 import sqlalchemy
 
-import exctract_air_pollution
-import transform
-from utils import Database
+from weather import transform, exctract_air_pollution
+from weather.utils import Database
 
 if __name__ == '__main__':
     # Load .env

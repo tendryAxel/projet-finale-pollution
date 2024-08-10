@@ -2,7 +2,6 @@ import os
 
 import aqi
 import pandas as pd
-from sqlalchemy import Engine
 
 
 def calc_aqi(line: pd.Series):
@@ -17,21 +16,21 @@ def calc_aqi(line: pd.Series):
     # ])
 
 
-def create_geographic(engine: Engine, file_path: str):
+def create_geographic(engine, file_path: str):
     pd.read_csv(file_path, index_col=0).to_sql("geographic", con=engine, if_exists='replace')
 
 
-def create_demographic(engine: Engine, file_path: str):
+def create_demographic(engine, file_path: str):
     pd.read_csv(file_path, index_col=0).to_sql("demographic", con=engine, if_exists='replace')
 
 
-def create_pollution(engine: Engine):
+def create_pollution(engine):
     all_pollution = pd.read_sql_table("pollution_lake", con=engine.connect())
     all_pollution["aqi"] = all_pollution.apply(calc_aqi, axis=1)
     all_pollution.to_sql("pollution", con=engine, if_exists="replace")
 
 
-def main(engine: Engine):
+def main(engine):
     create_pollution(engine)
     create_demographic(engine, os.path.join(os.path.dirname(__file__), "data", "Demographic_Data.csv"))
     create_geographic(engine, os.path.join(os.path.dirname(__file__), "data", "Geographic_Data.csv"))
