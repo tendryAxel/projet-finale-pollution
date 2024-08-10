@@ -13,6 +13,7 @@ def save_hourly_pollution_to_csv_in_range(
         end: datetime.datetime = datetime.datetime.today()) -> None:
     location = find_city_position(city)
     pollution = get_pollution_in_range(location, start, end)
+    pollution["dt"] = pd.to_datetime(pollution["dt"], errors='coerce')
     pollution["city_name"] = city
     return pollution.to_sql('pollution_lake', con=engine, if_exists='append', index=False)
 

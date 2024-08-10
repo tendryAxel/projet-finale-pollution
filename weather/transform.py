@@ -26,7 +26,7 @@ def create_demographic(engine, file_path: str):
 
 def create_pollution(engine):
     all_pollution = pd.read_sql_table("pollution_lake", con=engine.connect())
-    all_pollution["aqi"] = all_pollution.apply(calc_aqi, axis=1)
+    all_pollution["aqi"] = pd.to_numeric(all_pollution.apply(calc_aqi, axis=1))
     all_pollution.to_sql("pollution", con=engine, if_exists="replace")
 
 
