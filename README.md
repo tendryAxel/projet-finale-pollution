@@ -31,7 +31,10 @@
       DB_USERNAME=postgres
       DB_HOST=localhost
       DB_NAME=postgres-database
+      RANGE_START=2024-08-20
+      RANGE_END=2024-08-28
       ```
+    ## Nb: specify **RANGE_START** and **RANGE_END** to set a range of date to fetch data with the format: **HH-mm-dd**
 - Run the code:
   - for Windows
       ```sh

@@ -1,6 +1,8 @@
 import datetime
 import math
 import os
+from typing import Callable
+
 import pandas as pd
 
 from airpyllution.airpyllution import get_pollution_history
@@ -28,6 +30,14 @@ def get_pollution_in_range(location: geopy.Location, start: datetime.datetime, e
         location.longitude,
         os.getenv("OPEN_WEATHER_API_KEY")
     )
+
+
+def conditional_action_by_list_env(envs: list[str | None], success_action: Callable, defeat_action: Callable) -> None:
+    if len([env for env in envs if env is None]) == 0:
+        print("Successfully load all environments for this condition")
+        success_action()
+    else:
+        defeat_action()
 
 
 class Database:
