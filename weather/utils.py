@@ -17,9 +17,13 @@ def find_city_position(city: str) -> geopy.Location: return geolocator.geocode(c
 
 
 def get_pollution(location: geopy.Location, date: datetime.datetime) -> pd.DataFrame:
+    return get_pollution_in_range(location, date - datetime.timedelta(days=1), date)
+
+
+def get_pollution_in_range(location: geopy.Location, start: datetime.datetime, end: datetime.datetime) -> pd.DataFrame:
     return get_pollution_history(
-        convert_datetime_to_unix_timestamp(date - datetime.timedelta(days=4)),
-        convert_datetime_to_unix_timestamp(date),
+        convert_datetime_to_unix_timestamp(start),
+        convert_datetime_to_unix_timestamp(end),
         location.latitude,
         location.longitude,
         os.getenv("OPEN_WEATHER_API_KEY")
